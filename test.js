@@ -11,17 +11,18 @@
 
 
 //phantomjs
+//phantomjs 启动有步骤 , 需要进入phantom命令然后启动 , 弃之不用 , 试验 phantom的node版本
 var page = require('webpage').create();
 page.onConsoleMessage = function (msg) {
     console.log(msg);
 };
-page.open('https://tou.winfae.com/', function (s) {
-    // page.includeJs("http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js", function () {
-    //     page.evaluate(function () {
-    //         console.log($('.switch_container>ul').html())
-    //     });
-    //     phantom.exit()
-    // });
-    page.render('google_home.jpeg', {format: 'jpeg', quality: '100'});
-    phantom.exit()
+page.open('https://tou.winfae.com/about/siteNotice.html', function (s) {
+    page.includeJs("http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js", function () {
+        page.evaluate(function () {
+            console.log($('.switch_container>ul').html())
+        });
+        phantom.exit()
+    });
+    // page.render('google_home.jpeg', {format: 'jpeg', quality: '100'});
+    // phantom.exit()
 });
